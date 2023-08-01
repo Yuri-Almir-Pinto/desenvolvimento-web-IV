@@ -1,14 +1,14 @@
 {
-	"titulo": "",
-	"ano_producao": 0,
-	"direcao": "",
+	"titulo": "Pearl (Original)",
+	"ano_producao": 2022,
+	"direcao": "Ti West",
 	"estreia": [{
-		"data": "",
-		"local": ""
+		"data": "2022",
+		"local": "Mundial"
 	}],
-	"duracao": "",
-	"classificacao": "",
-	"genero": [""],
-	"paises_de_origem": [""],
-	"sinopse": ""
+	"duracao": 150,
+	"classificacao": 18,
+	"genero": ["Terror"],
+	"paises_de_origem": ["Canadá","Estados Unidos da América"],
+	"sinopse": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 }
