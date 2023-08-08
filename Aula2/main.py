@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from datetime import datetime
+from datetime import datetime, timedelta
 
 app = FastAPI()
 
@@ -27,5 +27,23 @@ def ehpar(numero: int):
     return {
         "result": False
     }
+
+@app.get("/horarios/{cidade}")
+def horarios(cidade):
+    if cidade == "Tokyo":
+        return {
+            "Cidade": cidade,
+            "Hora": datetime.now() + timedelta(hours=12)
+        }
+    if cidade == "Brasilia":
+        return {
+            "Cidade": cidade,
+            "Hora": datetime.now()
+        }
+    if cidade == "Londres":
+        return {
+            "Cidade": cidade,
+            "Hora": datetime.now() + timedelta(hours=4)
+        }
 
 # uvicorn main:app --reload
