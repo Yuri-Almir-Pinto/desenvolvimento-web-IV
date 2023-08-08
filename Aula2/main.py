@@ -46,4 +46,25 @@ def horarios(cidade):
             "Hora": datetime.now() + timedelta(hours=4)
         }
 
+@app.get("/dia")
+def dia():
+    dia = datetime.now().weekday()
+    if dia == 0:
+        dia = "Segunda-feira"
+    elif dia == 1:
+        dia = "Terça-feira"
+    elif dia == 2:
+        dia = "Quarta-feira"
+    elif dia == 3:
+        dia = "Quinta-feira"
+    elif dia == 4:
+        dia = "Sexta-feira"
+    elif dia == 5:
+        dia = "Sábado"
+    elif dia == 6:
+        dia = "Domingo"
+    return {
+        "dia": dia
+    }
+
 # uvicorn main:app --reload
