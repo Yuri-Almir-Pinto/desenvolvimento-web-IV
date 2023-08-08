@@ -11,4 +11,21 @@ def horacerta():
         "Local": "BR"
     }
 
+@app.get("/upper/{nome}")
+def upper(nome):
+    return {
+        "nome": nome,
+        "upper": nome.upper()
+    }
+
+@app.get("/ehpar/{numero}")
+def ehpar(numero: int):
+    if numero % 2 == 0:
+        return {
+            "result": True 
+        }
+    return {
+        "result": False
+    }
+
 # uvicorn main:app --reload
