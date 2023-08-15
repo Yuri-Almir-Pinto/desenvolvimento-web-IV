@@ -42,12 +42,13 @@ def getBookYear(title: str):
 
 @app.get("/book/author/{author}")
 def getBookYear(author: str):
-    with open("books.json") as j:
+    with open("booksv2.json") as j:
         jsons = []
         data = json.load(j)
         for item in data:
-            if author in item['authors']:
-                jsons.append(item)
+            for a in item['authors']:
+                if author in a:
+                    jsons.append(item)
 
         if len(jsons) != 0:
             return jsons
