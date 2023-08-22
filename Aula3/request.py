@@ -10,4 +10,6 @@ headers = {"accept": "application/json"}
 
 response = requests.get(endpoint, headers=headers)
 
-print(response.text)
+data = response.json()
+
+print(data['results'][0]['original_title'])
