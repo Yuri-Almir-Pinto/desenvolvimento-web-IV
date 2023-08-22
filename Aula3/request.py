@@ -11,5 +11,9 @@ headers = {"accept": "application/json"}
 response = requests.get(endpoint, headers=headers)
 
 data = response.json()
+filmes = data['results']
 
-print(data['results'][0]['original_title'])
+for item in filmes:
+    print (item['original_title'])
+
+# print(data['results'][0]['original_title'])
