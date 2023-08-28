@@ -2,11 +2,11 @@ import requests
 
 URL_MOVIES = "https://api.themoviedb.org/3/discover/movie"
 URL_GENRES = "https://api.themoviedb.org/3/genre/movie/list?language=en"
-PARAMS_POPULAR = "?sort_by=vote_count.desc"
+PARAMS = "?sort_by=vote_count.desc"
 API_KEY = "5b3819951044f6aa1b37f96daf47c074"
 
 def getPopularsJson(): # Retorna um json com os filmes mais populares
-    endpoint = URL_MOVIES + PARAMS_POPULAR + "&api_key=" + API_KEY
+    endpoint = URL_MOVIES + PARAMS + "&api_key=" + API_KEY
     headers = {"accept": "application/json"}
     response = requests.get(endpoint, headers=headers)
 
