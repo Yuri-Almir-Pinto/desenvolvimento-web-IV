@@ -1,25 +1,26 @@
 import requests
 
-url = "https://api.themoviedb.org/3/discover/movie"
-params = "?sort_by=vote_count.desc"
-api_key = "&api_key=5b3819951044f6aa1b37f96daf47c074"
-genresEndpoint = "https://api.themoviedb.org/3/genre/movie/list?language=en"
+URL_MOVIES = "https://api.themoviedb.org/3/discover/movie"
+URL_GENRES = "https://api.themoviedb.org/3/genre/movie/list?language=en"
+PARAMS_POPULAR = "?sort_by=vote_count.desc"
+API_KEY = "5b3819951044f6aa1b37f96daf47c074"
 
-endpoint = url + params + api_key
-genresEndpoint = genresEndpoint + api_key
+def getPopularsJson(): # Retorna um json com os filmes mais populares
+    endpoint = URL_MOVIES + PARAMS_POPULAR + "&api_key=" + API_KEY
+    headers = {"accept": "application/json"}
+    response = requests.get(endpoint, headers=headers)
 
-headers = {"accept": "application/json"}
+    return response.json()
 
-response = requests.get(endpoint, headers=headers)
-response2 = requests.get(genresEndpoint, headers=headers)
+def getGenresJson(): # Retorna uma lista com todos os ids e seus nomes.
+    genresEndpoint = URL_GENRES + "&api_key=" + API_KEY
+    headers = {"accept": "application/json"}
+    response = requests.get(genresEndpoint, headers=headers)
 
-data = response.json()
-data2 = response2.json()
-filmes = data['results']
-generos = data2['genres']
-quantia = 0
+    return response.json()
 
-def findGenre(generos_filme):
+def findGenre(generos_filme, generos): # Recebe uma lista de id de gêneros, e a lista de gêneros existentes, 
+    # e retorna o nome de cada gênero como uma lista.
     Lista_generos = []
     for generoF in generos_filme:
         for genero in generos:
@@ -27,15 +28,19 @@ def findGenre(generos_filme):
                 Lista_generos.append(genero['name'])
     return Lista_generos
 
-for item in filmes:
-    quantia = quantia + 1
+def getMovieInfo():
+    filmes = getPopularsJson()['results']
+    generos = getGenresJson()['genres']
+    quantia = 0
+    for item in filmes:
+        quantia = quantia + 1
+        print("---------------------")
+        print ("Nome: " + item['original_title'])
+        print (f"Id: {item['id']}")
+        print (f"Gêneros: {findGenre(item['genre_ids'], generos)}")
+
     print("---------------------")
-    print ("Nome: " + item['original_title'])
-    print (f"Id: {item['id']}")
-    print (f"Gêneros: {findGenre(item['genre_ids'])}")
+    print(quantia)
 
-print("---------------------")
-print(quantia)
-
-# print(data['results'][0]['original_title'])
-                
+if __name__ == "__main__":
+    getMovieInfo()
