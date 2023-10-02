@@ -5,7 +5,8 @@ URL_GENRES = "https://api.themoviedb.org/3/genre/movie/list?language=en"
 URL_MOVIE_BY_NAME = "https://api.themoviedb.org/3/search/movie?query="
 URL_PEOPLE = "https://api.themoviedb.org/3/search/person"
 URL_PEOPLE_BY_ID = "https://api.themoviedb.org/3/person/"
-URL_PEOPLE_MOVIES_BY_ID = f"https://api.themoviedb.org/3/person/{id}/movie_credits?language=en-US"
+URL_PEOPLE_MOVIES_BY_ID1 = "https://api.themoviedb.org/3/person/"
+URL_PEOPLE_MOVIES_BY_ID2 = "/movie_credits?language=en-US"
 URL_TRENDING_WEEK_MOVIES = "https://api.themoviedb.org/3/trending/movie/week?language=en-US"
 PARAMS = "?sort_by=vote_count.desc"
 API_KEY = "5b3819951044f6aa1b37f96daf47c074"
@@ -37,14 +38,14 @@ def getPeopleJson(name):
 
     return response.json()
 
-def getPeopleByIdJson(id):
+def getPeopleByIdJson(id: str):
     endpoint = URL_PEOPLE_BY_ID + id + "?api_key=" + API_KEY
     response = requests.get(endpoint)
 
     return response.json()
 
 def getPeopleMoviesByIdJson(id):
-    endpoint = URL_PEOPLE_MOVIES_BY_ID + "&api_key=" + API_KEY
+    endpoint = URL_PEOPLE_MOVIES_BY_ID1 + id + URL_PEOPLE_MOVIES_BY_ID2 + "&api_key=" + API_KEY
     response = requests.get(endpoint)
 
     return response.json()
@@ -66,6 +67,7 @@ def getMovieInfo():
         json['nome'] = item['original_title']
         json['id'] = item['id']
         json['generos'] = findGenre(item['genre_ids'], generos)
+        json['imagem'] = f"https://image.tmdb.org/t/p/w185{item['poster_path']}"
         retorno.append(json)
 
     return retorno
@@ -121,7 +123,9 @@ def getMovieByNameAndSortByPopular(name):
 
 def getMoviesFromPeople(id):
     idAtor = str(id)
-    filmes = getPeopleMoviesByIdJson(idAtor)['cast']
+    filmes = getPeopleMoviesByIdJson(idAtor)#['cast']
+
+    return filmes
     ator = getPeopleByIdJson(idAutor)
     generos = getGenresJson()
     info = {
