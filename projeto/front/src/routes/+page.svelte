@@ -3,6 +3,7 @@
 	import Movie from "./Movie.svelte"
 	import Artista from "./Artist.svelte"
 	import Nav from "./Nav.svelte"
+	import User from "./User.svelte"
 </script>
 
 <Nav bind:menu/>
@@ -13,7 +14,7 @@
 	{:else if menu === 2}
 		<Artista/>
 	{:else if menu === 3}
-		OPTION 3
+		<User/>
 	{:else}
 		OPTION 4
 	{/if}

@@ -6,7 +6,7 @@
     <ul>
       <li><a href="/" on:click|preventDefault={() => (menu = 1)}>Filmes</a></li>
       <li><a href="/" on:click|preventDefault={() => (menu = 2)}>Artista</a></li>
-      <li><a href="/" on:click|preventDefault={() => (menu = 3)}>Option3</a></li>
+      <li><a href="/" on:click|preventDefault={() => (menu = 3)}>Users</a></li>
     </ul>
   </div>
   
