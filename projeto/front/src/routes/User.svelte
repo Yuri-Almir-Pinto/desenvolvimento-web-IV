@@ -4,7 +4,7 @@
         // envia o formulario no formato json
         let formData = new FormData(e.target);
         let data = Object.fromEntries(formData.entries());
-        const res = await fetch('http://localhost:8000/user/create',{
+        const res = await fetch('http://localhost:8000/user',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

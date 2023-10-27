@@ -35,12 +35,33 @@ def get_db():
     finally:
         db.close()
 
-@app.post("/user/create", response_model=schemas.User)
+# ------- CRUD USERS -------
+
+@app.post("/user", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_email(db, email=user.email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
     return crud.create_user(db=db, user=user)
+        
+
+@app.delete("/user/", response_model=schemas.User)
+def delete_user(id: int, db: Session = Depends(get_db)):
+    print("delete_user: " + str(id))
+    return crud.del_users(db=db, id=id)
+
+@app.get("/user", response_model=list[schemas.User])
+def read_all_user(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    all_users = crud.get_users(db, skip=skip, limit=limit)
+    return all_users
+
+# ------- CRUD FAVORITOS -------
+
+@app.post("/favorite", response_model=schemas.Favorites)
+def favorite_movie(db: Session = Depends(get_db), email = str, idMovie = str):
+    return crud.favorite_movie(db, email, idMovie)
+
+# ------- COISA NORMAL -------
 
 # - endpoint que retorna 5 filmes recomendados da semana (definidos em uma lista no python)
 @app.get("/filmes/top5melhoresSemana")

@@ -7,6 +7,7 @@
       <li><a href="/" on:click|preventDefault={() => (menu = 1)}>Filmes</a></li>
       <li><a href="/" on:click|preventDefault={() => (menu = 2)}>Artista</a></li>
       <li><a href="/" on:click|preventDefault={() => (menu = 3)}>Users</a></li>
+      <li><a href="/" on:click|preventDefault={() => (menu = 4)}>Users List</a></li>
     </ul>
   </div>
   
