@@ -15,7 +15,9 @@ class User(UserBase):
     class Config:
         orm_mode = True
 
-class Favorites(BaseModel):
-    id: int
-    idUser: int
+class FavoriteBase(BaseModel):
     idMovie: int
+    idUser: int
+
+class Favorites(FavoriteBase):
+    id: int

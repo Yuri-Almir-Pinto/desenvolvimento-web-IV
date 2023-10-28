@@ -2,6 +2,7 @@
     let resposta = "";
     async function sendForm(e){
         // envia o formulario no formato json
+        debugger;
         let formData = new FormData(e.target);
         let data = Object.fromEntries(formData.entries());
         const res = await fetch('http://localhost:8000/user',{
